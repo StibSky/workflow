@@ -7,9 +7,10 @@
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button class="btn">Register</button>
+    <a href="{{ path('app_register') }}"> <button class="btn">Register</button></a>
     {{ form_end(registrationForm) }}
 {% endblock %}
