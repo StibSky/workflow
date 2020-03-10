@@ -46,10 +46,10 @@ class RegistrationFormType extends AbstractType
             ->add('name')
             ->add('Roles', ChoiceType::class, [
                 'choices' => [
-                    'ROLE_ADMIN' => 'ROLE_ADMIN',
-                    'ROLE_CUSTOMER' => 'ROLE_CUSTOMER',
-                    'ROLE_FIRST_LINE' => 'ROLE_FIRST_LINE',
-                    'ROLE_SECOND_LINE' => 'ROLE_SECOND_LINE',
+                    'ADMIN' => 'ROLE_ADMIN',
+                    'CUSTOMER' => 'ROLE_CUSTOMER',
+                    'FIRST_LINE' => 'ROLE_FIRST_LINE',
+                    'SECOND_LINE' => 'ROLE_SECOND_LINE',
                 ],
                 "mapped" => false,
             ]);

@@ -97,6 +97,7 @@ https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-t
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+        //return array_unique(array_merge(['ROLE_USER'], $this->>roles));
     }
 
     public function setRoles(array $roles): self
@@ -104,6 +105,11 @@ https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-t
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function resetRoles()
+    {
+        $this->roles= [];
     }
 
     /**
