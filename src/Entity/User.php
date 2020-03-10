@@ -77,6 +77,7 @@ class User implements UserInterface
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+        //return array_unique(array_merge(['ROLE_USER'], $this->>roles));
     }
 
     public function setRoles(array $roles): self
@@ -84,6 +85,11 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function resetRoles()
+    {
+        $this->roles= [];
     }
 
     /**
