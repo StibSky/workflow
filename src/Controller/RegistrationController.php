@@ -32,15 +32,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            if(isset($_POST["register"]))
-            {
-               if($_POST["register"] == 'ROLE_ADMIN') {
-                   $user->setRoles(['ROLE_ADMIN']);
-               }
-                if($_POST["registration_form"] == 'ROLE_CUSTOMER') {
-                    $user->setRoles(['ROLE_CUSTOMER']);
-                }
-            }
+            //getting roles
+            $role = $form->get('Roles');
+            $user->setRoles([$role->getData()]);
+            $user->getRoles();
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

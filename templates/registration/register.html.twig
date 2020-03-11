@@ -6,21 +6,11 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-<<<<<<< HEAD
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword) }}
-    {{ form_row(registrationForm.name) }}
-    {#        {{ form_row(registrationForm.roles) }}#}
-    {#    {% for choice in choices %}
-            {% choice 'ROLE_CUSTOMER' %}
-        {% endfor %}#}
-    {{ form_row(registrationForm.agreeTerms) }}
-=======
+
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.agreeTerms) }}
->>>>>>> 05d554f786c2ce50148248128a4b6eadde45d861
 
 
     <button class="btn" name="register">Register</button>
