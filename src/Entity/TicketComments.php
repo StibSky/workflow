@@ -38,10 +38,10 @@ class TicketComments
     private $ticket;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\People")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $people;
+    private $User;
 
     public function getId(): ?int
     {
@@ -96,14 +96,14 @@ class TicketComments
         return $this;
     }
 
-    public function getPeople(): ?People
+    public function getUser(): ?User
     {
-        return $this->people;
+        return $this->User;
     }
 
-    public function setPeople(?People $people): self
+    public function setUser(?User $User): self
     {
-        $this->people = $people;
+        $this->User = $User;
 
         return $this;
     }
