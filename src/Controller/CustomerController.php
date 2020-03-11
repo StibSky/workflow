@@ -24,7 +24,7 @@ class CustomerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $ticket->setSubject($form->get('subject')->getData());
-            //$comment->setComment($form->get('message')->getData());
+            $ticket->setFirstMessage($form->get('firstMessage')->getData());
             $ticket->setLine($form->get('line')->getData());
             $ticket->setStatus($form->get('status')->getData());
             $ticket->setPriority($form->get('priority')->getData());
