@@ -15,6 +15,7 @@ class CustomerFormType extends AbstractType
         $builder
             ->add('subject')
             //->add('message')
+            ->add('firstMessage')
             ->add('line', ChoiceType::class, [
                 'choices' => [
                     0 => 0,
