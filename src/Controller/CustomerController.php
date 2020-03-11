@@ -23,14 +23,11 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
             $ticket->setSubject($form->get('subject')->getData());
             //$comment->setComment($form->get('message')->getData());
             $ticket->setLine($form->get('line')->getData());
             $ticket->setStatus($form->get('status')->getData());
             $ticket->setPriority($form->get('priority')->getData());
-            $ticket->getAssignee("");
-            $ticket->
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);

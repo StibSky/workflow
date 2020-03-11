@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TicketsRepository")
  */
 class Tickets
 {
+    public function __construct()
+    {
+        $this->datetime = new DateTime();
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -23,7 +28,7 @@ class Tickets
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $assignee;
 
@@ -44,7 +49,7 @@ class Tickets
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $customer;
 
