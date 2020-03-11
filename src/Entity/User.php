@@ -29,6 +29,26 @@ class User implements UserInterface
      */
     private $roles = [];
 
+
+/*   public function getRoles(): array
+    {
+        return array_unique(array_merge(['ROLE_USER'], $this->roles));
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
+    public function resetRoles()
+    {
+        $this->roles = [];
+    }*/
+/*
+https://stackoverflow.com/questions/48832313/symfony-4-define-custom-user-roles-from-db/48832664
+https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-table
+*/
+
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
@@ -77,6 +97,7 @@ class User implements UserInterface
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
+        //return array_unique(array_merge(['ROLE_USER'], $this->>roles));
     }
 
     public function setRoles(array $roles): self
@@ -84,6 +105,11 @@ class User implements UserInterface
         $this->roles = $roles;
 
         return $this;
+    }
+
+    public function resetRoles()
+    {
+        $this->roles= [];
     }
 
     /**
