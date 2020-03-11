@@ -58,6 +58,11 @@ class Tickets
      */
     private $datetime;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstMessage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -143,6 +148,18 @@ class Tickets
     public function setDatetime(\DateTimeInterface $datetime): self
     {
         $this->datetime = $datetime;
+
+        return $this;
+    }
+
+    public function getFirstMessage(): ?string
+    {
+        return $this->firstMessage;
+    }
+
+    public function setFirstMessage(string $firstMessage): self
+    {
+        $this->firstMessage = $firstMessage;
 
         return $this;
     }
