@@ -22,7 +22,7 @@ class Tickets
     private $line;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\People")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $assignee;
@@ -43,7 +43,7 @@ class Tickets
     private $subject;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\People")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $customer;
@@ -70,12 +70,12 @@ class Tickets
         return $this;
     }
 
-    public function getAssignee(): ?People
+    public function getAssignee(): ?User
     {
         return $this->assignee;
     }
 
-    public function setAssignee(?People $assignee): self
+    public function setAssignee(?User $assignee): self
     {
         $this->assignee = $assignee;
 
@@ -118,12 +118,12 @@ class Tickets
         return $this;
     }
 
-    public function getCustomer(): ?People
+    public function getCustomer(): ?User
     {
         return $this->customer;
     }
 
-    public function setCustomer(?People $customer): self
+    public function setCustomer(?User $customer): self
     {
         $this->customer = $customer;
 
