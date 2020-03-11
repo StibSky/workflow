@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\TicketComments;
 use App\Entity\Tickets;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CustomerFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class CustomerController extends AbstractController
 {
     /**
      * @Route("/customer", name="customer")
      */
-    public function index(Request $request)
+    public function index(Request $request, UserInterface $user)
     {
         $ticket = new Tickets();
         //$comment = new TicketComments();
@@ -28,6 +28,8 @@ class CustomerController extends AbstractController
             $ticket->setLine($form->get('line')->getData());
             $ticket->setStatus($form->get('status')->getData());
             $ticket->setPriority($form->get('priority')->getData());
+            $user = $this->getUser();
+            $ticket->setCustomer($user);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
