@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class TicketComments
 {
+    public function __construct()
+    {
+        $this->datetime = new DateTime();
+    }
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
