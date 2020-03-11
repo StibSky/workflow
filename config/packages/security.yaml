@@ -36,5 +36,5 @@ security:
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/customer, roles: ROLE_CUSTOMER }
-    - { path: ^/first, roles: ROLE_FIRST_LINE }
+    - { path: ^/first, roles: [ROLE_FIRST_LINE, ROLE_ADMIN] }
     - { path: ^/second, roles: ROLE_SECOND_LINE }
