@@ -13,8 +13,6 @@ class PoolController extends AbstractController
      * @Route("/first", name="first")
      */
     public function index(){
-        $allTickets =
-        //$tickets = $allTickets->findAll();
         $repo = $this->getDoctrine()->getRepository(Tickets::class);
         $tickets = $repo->findByNull();
 
@@ -33,7 +31,8 @@ class PoolController extends AbstractController
 
         return $this->render('first/index.html.twig', [
             'controller_name' => 'PoolController',
-            'tickets' => $tickets
+            'tickets' => $tickets,
+            'my_tickets' => $myTickets
         ]);
     }
 
