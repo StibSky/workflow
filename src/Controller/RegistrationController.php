@@ -32,7 +32,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            //getting roles
+            // getting roles
             $role = $form->get('Roles');
             $user->setRoles([$role->getData()]);
             $user->getRoles();

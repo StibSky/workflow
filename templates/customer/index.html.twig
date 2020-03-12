@@ -9,7 +9,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello!</h1>
+    <h1>Got a problem? Make a ticket</h1>
+    <a href="{{ path('customerTickets') }}">View your tickets</a>
     {{ form_start(customerForm) }}
     {{ form_row(customerForm.subject) }}
     {{ form_row(customerForm.firstMessage) }}
