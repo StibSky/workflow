@@ -13,6 +13,9 @@ class Tickets
     public function __construct()
     {
         $this->datetime = new DateTime();
+        $this->setLine(1);
+        $this->setStatus(0);
+        $this->setPriority(0);
     }
     /**
      * @ORM\Id()
