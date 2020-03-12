@@ -28,12 +28,73 @@ class TicketsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->andWhere('t.customer = :val')
             ->setParameter('val', $value)
-            ->orderBy('t.datetime', 'DESC')
+            ->orderBy('t.datetime', 'ASC')
             ->setMaxResults(100)
             ->getQuery()
             ->getResult()
         ;
     }
+    public function findAssignedToMe($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.assignee = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.datetime', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByAssigneeId($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.assignee = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByNull()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.assignee IS NULL')
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByLine($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.assignee IS NULL')
+            ->andWhere('t.line = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+   public function findByTicketId($value)
+   {
+       return $this->createQueryBuilder('t')
+           ->andWhere('t.id = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+       ;
+   }
+
 
 
     /*

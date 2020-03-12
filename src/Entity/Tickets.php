@@ -95,6 +95,11 @@ class Tickets
         return $this;
     }
 
+    public function setAssigneeToNull()
+    {
+        $em = $this->getDoctrine()->getManager();
+    }
+
     public function getStatus(): ?int
     {
         return $this->status;
