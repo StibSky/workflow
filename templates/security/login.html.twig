@@ -12,6 +12,7 @@
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
+
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -36,10 +37,7 @@
             </label>
         </div>
     #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    <a href="{{ path('customer') }}"><button class="btn btn-lg-btm-primary" type="submit" >Sign-In</button></a>
 
 
 </form>
