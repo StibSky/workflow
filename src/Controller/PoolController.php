@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tickets;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class PoolController extends AbstractController
 {
@@ -12,14 +13,12 @@ class PoolController extends AbstractController
      * @Route("/first", name="first")
      */
     public function index(){
-        //$tickets = $allTickets->findAll();
-            var_dump($this->getUser());
         $repo = $this->getDoctrine()->getRepository(Tickets::class);
-        $myTickets = $repo->findByAssigneeId($this->getUser());
         $tickets = $repo->findByNull();
 
 
         $em = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository(Tickets::class);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['assign'])) {
 
@@ -34,6 +33,19 @@ class PoolController extends AbstractController
             'controller_name' => 'PoolController',
             'tickets' => $tickets,
             'my_tickets' => $myTickets
+        ]);
+    }
+
+    /**
+     * @Route("/agentdash", name="agentDash")
+     */
+    public function dashboard(UserInterface $user) {
+        $em = $this->getDoctrine()->getRepository(Tickets::class);
+        $tickets = $em->findAssignedToMe($this->getUser()->getId());
+        $name = $this->getUser()->getName();
+        return $this->render('first/firstdash.html.twig', [
+            'tickets' => $tickets,
+            'name' => $name
         ]);
     }
 }
