@@ -10,6 +10,15 @@
 
 <div class="example-wrapper">
     <h1>&#x1F3CA; Ticket pool</h1>
+    {% for mine in my_tickets %}
+        <form method="post">
+            <article>
+                <h4>{{ mine.id }} | {{ mine.subject }}</h4>
+                <p>{{ mine.firstMessage }}</p>
+                <p>By {{ mine.customer.name }} | {{ mine.customer.email }}</p>
+            </article>
+        </form>
+    {% endfor %}
     {% for ticket in tickets %}
         <form method="post">
             <article>
