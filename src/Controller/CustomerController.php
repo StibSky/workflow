@@ -30,9 +30,10 @@ class CustomerController extends AbstractController
         }*/
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $ticket->setLine($form->get('line')->getData());
-            $ticket->setStatus($form->get('status')->getData());
-            $ticket->setPriority($form->get('priority')->getData());
+            $ticket->setLine(1);
+            $ticket->setStatus(0);
+            $ticket->setPriority(0);
+
             $ticket->setCustomer($user);
 
             $entityManager = $this->getDoctrine()->getManager();
