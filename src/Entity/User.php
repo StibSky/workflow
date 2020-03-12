@@ -107,6 +107,11 @@ https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-t
         return $this;
     }
 
+    public function hasRole($role)
+    {
+        return in_array($role, $this->getRoles(), true);
+    }
+
     public function resetRoles()
     {
         $this->roles= [];
@@ -154,5 +159,12 @@ https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-t
         $this->name = $name;
 
         return $this;
+    }
+
+    public function filterById(UserInterface $user)
+    {
+        $user = $this->getUser();
+
+
     }
 }

@@ -16,19 +16,26 @@ class CustomerController extends AbstractController
      */
     public function index(Request $request, UserInterface $user)
     {
+
+
         $ticket = new Tickets();
         //$comment = new TicketComments();
 
         $form = $this->createForm(CustomerFormType::class, $ticket);
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+
+/*        if ($user->getRoles() === ['ROLE_CUSTOMER', 'ROLE_USER']) {
+            $text = "cool";
+        } else {
+            $text= "help";
+        }*/
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $ticket->setSubject($form->get('subject')->getData());
-            $ticket->setFirstMessage($form->get('firstMessage')->getData());
             $ticket->setLine($form->get('line')->getData());
             $ticket->setStatus($form->get('status')->getData());
             $ticket->setPriority($form->get('priority')->getData());
-            $user = $this->getUser();
             $ticket->setCustomer($user);
 
             $entityManager = $this->getDoctrine()->getManager();
