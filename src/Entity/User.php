@@ -160,4 +160,11 @@ https://stackoverflow.com/questions/28683596/inserting-json-data-into-database-t
 
         return $this;
     }
+
+    public function filterById(UserInterface $user)
+    {
+        $user = $this->getUser();
+
+
+    }
 }
