@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FirstController extends AbstractController
+class PoolController extends AbstractController
 {
     /**
      * @Route("/first", name="first")
@@ -15,7 +15,7 @@ class FirstController extends AbstractController
         $tickets = $allTickets->findAll();
 
         return $this->render('first/index.html.twig', [
-            'controller_name' => 'FirstController',
+            'controller_name' => 'PoolController',
             'tickets' => $tickets
         ]);
     }
