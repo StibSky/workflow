@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FirstController!{% endblock %}
+{% block title %}Poolboy gathering place{% endblock %}
 
 {% block body %}
 <style>
@@ -9,11 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Ticket pool</h1>
+    <h1>&#x1F3CA; Ticket pool</h1>
     {% for ticket in tickets %}
         <article>
             <h4>{{ ticket.id }} | {{ ticket.subject }}</h4>
             <p>{{ ticket.firstMessage }}</p>
+            <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
         </article>
     {% endfor %}
 </div>
