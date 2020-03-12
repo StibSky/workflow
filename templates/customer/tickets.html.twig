@@ -11,9 +11,11 @@
     <div class="example-wrapper">
         <h1>Your tickets</h1>
         <a href="{{ path('customer') }}">Make another ticket</a>
+        <!-- Incrementing a number for each ticket -->
+        {% set myVal = 0 %}
         {% for ticket in tickets %}
             <article>
-                <h4>{{ ticket.id }} | {{ ticket.subject }}</h4>
+                <h4>{% set myVal = myVal + 1 %} {{ myVal }} | {{ ticket.subject }}</h4>
                 <p>{{ ticket.firstMessage }}</p>
             </article>
         {% endfor %}
