@@ -11,11 +11,14 @@
 <div class="example-wrapper">
     <h1>&#x1F3CA; Ticket pool</h1>
     {% for ticket in tickets %}
-        <article>
-            <h4>{{ ticket.id }} | {{ ticket.subject }}</h4>
-            <p>{{ ticket.firstMessage }}</p>
-            <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
-        </article>
+        <form method="post">
+            <article>
+                <h4>{{ ticket.id }} | {{ ticket.subject }}</h4>
+                <p>{{ ticket.firstMessage }}</p>
+                <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
+            </article>
+            <button name="assign" value="{{ ticket.id }}" type="submit">I want this ticket</button>
+        </form>
     {% endfor %}
 </div>
 {% endblock %}
