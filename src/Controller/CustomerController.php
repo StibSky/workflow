@@ -16,8 +16,6 @@ class CustomerController extends AbstractController
      */
     public function index(Request $request, UserInterface $user)
     {
-
-
         $ticket = new Tickets();
         //$comment = new TicketComments();
 
