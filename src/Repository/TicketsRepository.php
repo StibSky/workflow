@@ -34,6 +34,17 @@ class TicketsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function findAssignedToMe($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.assignee = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.datetime', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     public function findByAssigneeId($value)
     {
