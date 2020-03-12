@@ -19,7 +19,6 @@ class CustomerController extends AbstractController
 
 
         $ticket = new Tickets();
-        //$comment = new TicketComments();
 
         $form = $this->createForm(CustomerFormType::class, $ticket);
         $form->handleRequest($request);
@@ -40,7 +39,6 @@ class CustomerController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
-            //$entityManager->persist($comment);
             $entityManager->flush();
         }
 
@@ -59,6 +57,22 @@ class CustomerController extends AbstractController
 
         return $this->render('customer/index.html.twig', [
             'customerForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("customer/tickets", name="customerTickets")
+     */
+    public function showTickets(UserInterface $user) {
+
+        $em = $this->getDoctrine()->getRepository(Tickets::class);
+        $tickets = $em->findByCustomerId($this->getUser()->getId());
+
+
+        return $this->render('customer/tickets.html.twig', [
+            'tickets' => $tickets
         ]);
     }
 }
