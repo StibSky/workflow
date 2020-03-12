@@ -23,36 +23,12 @@ class CustomerController extends AbstractController
 
         $user = $this->getUser();
 
-/*        if ($user->getRoles() === ['ROLE_CUSTOMER', 'ROLE_USER']) {
-            $text = "cool";
-        } else {
-            $text= "help";
-        }*/
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $ticket->setLine(1);
-            $ticket->setStatus(0);
-            $ticket->setPriority(0);
-
             $ticket->setCustomer($user);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ticket);
             $entityManager->flush();
         }
-
-        //$em = $this->getDoctrine()->getManager();
-/*        if (isset($_POST)) {
-            $ticket->setSubject($_POST['subject']);
-            $comment->setComment($_POST['message']);
-            $ticket->setLine($_POST['line']);
-            $ticket->setStatus($_POST['status']);
-            $ticket->setPriority($_POST['priority']);
-
-            //$em->persist($ticket);
-            //$em->persist($comment);
-            //$em->flush();
-        }*/
 
         return $this->render('customer/index.html.twig', [
             'customerForm' => $form->createView(),
