@@ -18,6 +18,7 @@
                     <p>{{ ticket.firstMessage }}</p>
                     <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
                 </article>
+                <button type="submit" name="drop" value="{{ ticket.id }}">I don't want this anymore</button>
                 <button type="submit" name="escalate">Escalate</button>
             </form>
         {% endfor %}
