@@ -22,19 +22,19 @@ class TicketsRepository extends ServiceEntityRepository
     // /**
     //  * @return Tickets[] Returns an array of Tickets objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByCustomerId($value)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.customer = :val')
             ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Tickets
