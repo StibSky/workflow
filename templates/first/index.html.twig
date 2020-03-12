@@ -18,6 +18,7 @@
                 <p>{{ ticket.firstMessage }}</p>
                 <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
             </article>
+            <!-- TODO: Send value with hidden field instead of on button -->
             <button name="assign" value="{{ ticket.id }}" type="submit">I want this ticket</button>
         </form>
     {% endfor %}

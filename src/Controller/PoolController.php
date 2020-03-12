@@ -21,9 +21,9 @@ class PoolController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Tickets::class);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['assign'])) {
-
                 $ticket = $repo->findByTicketId($_POST['assign']);
                 $ticket->setAssignee($this->getUser());
+                // TODO: Magic number, status would be better as actual constants ('In progress', "open', etc.)
                 $ticket->setStatus(1);
                 $em->flush();
                 header("Refresh:0");
