@@ -35,6 +35,30 @@ class TicketsRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findByAssigneeId($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.assignee = :val')
+            ->setParameter('val', $value)
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByNull()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.assignee IS NULL')
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
    public function findByTicketId($value)
    {
