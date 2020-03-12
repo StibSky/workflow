@@ -40,8 +40,20 @@ class TicketsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->andWhere('t.assignee = :val')
             ->setParameter('val', $value)
-            ->addOrderBy('t.priority', 'DESC')
-            ->addOrderBy('t.datetime', 'DESC')
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findByNull()
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.assignee IS NULL')
+            ->orderBy('t.priority', 'DESC')
+            //->addOrderBy('t.datetime', 'DESC')
             ->setMaxResults(100)
             ->getQuery()
             ->getResult()
