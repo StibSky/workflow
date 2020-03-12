@@ -32,7 +32,6 @@ class PoolController extends AbstractController
         return $this->render('first/index.html.twig', [
             'controller_name' => 'PoolController',
             'tickets' => $tickets,
-            'my_tickets' => $myTickets
         ]);
     }
 
@@ -40,9 +39,18 @@ class PoolController extends AbstractController
      * @Route("/agentdash", name="agentDash")
      */
     public function dashboard(UserInterface $user) {
-        $em = $this->getDoctrine()->getRepository(Tickets::class);
+        $em = $this->getDoctrine()->getManager()->getRepository(Tickets::class);
         $tickets = $em->findAssignedToMe($this->getUser()->getId());
         $name = $this->getUser()->getName();
+
+            if (isset($_POST['escalate'])) {
+                $ticket = $em->findByTicketId($_POST['escalate']);
+                $emAss = $this->getDoctrine()->getManager();
+                $ticket->setAssignee(null);
+                $emAss->persist($ticket);
+                $emAss->flush();
+            }
+
         return $this->render('first/firstdash.html.twig', [
             'tickets' => $tickets,
             'name' => $name
