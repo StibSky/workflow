@@ -12,13 +12,18 @@ class PoolController extends AbstractController
     /**
      * @Route("/first", name="first")
      */
-    public function index(){
+    public function index(UserInterface $user){
         $repo = $this->getDoctrine()->getRepository(Tickets::class);
-        $tickets = $repo->findByNull();
-
+        $user = $this->getUser();
+        if ($user->getRoles() === ['ROLE_FIRST_LINE', 'ROLE_USER']) {
+            $tickets = $repo->findByLine(1);
+        }
+        else {
+            $tickets = $repo->findByLine(2);
+            var_dump($tickets);
+        }
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $this->getDoctrine()->getRepository(Tickets::class);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['assign'])) {
 
@@ -47,6 +52,8 @@ class PoolController extends AbstractController
                 $ticket = $em->findByTicketId($_POST['escalate']);
                 $emAss = $this->getDoctrine()->getManager();
                 $ticket->setAssignee(null);
+                $ticket->setLine(2);
+                $ticket->setStatus(0);
                 $emAss->persist($ticket);
                 $emAss->flush();
             }

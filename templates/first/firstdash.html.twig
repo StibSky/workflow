@@ -18,7 +18,9 @@
                     <p>{{ ticket.firstMessage }}</p>
                     <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
                 </article>
+                {% if is_granted('ROLE_FIRST_LINE') %}
                 <button type="submit" value="{{ ticket.id }}" name="escalate">Escalate</button>
+                {% endif %}
             </form>
         {% endfor %}
     </div>
