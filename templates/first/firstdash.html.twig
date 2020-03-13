@@ -6,6 +6,7 @@
     <style>
         .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .comment {border: 2px black solid; padding: 1em; margin: 1em;}
     </style>
 
     <div class="example-wrapper">
@@ -20,8 +21,10 @@
                     <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
                 </article>
                 {% for comment in comments %}
-                    <p>{{ comment.comment }}</p>
-                    <p>- {{ comment.user.name }}</p>
+                    <div class="comment">
+                        <p>{{ comment.comment }}</p>
+                        <p>- {{ comment.user.name }}</p>
+                    </div>
                 {% endfor %}
                 {% if is_granted('ROLE_FIRST_LINE') %}
                 <button type="submit" value="{{ ticket.id }}" name="escalate">Escalate</button>
