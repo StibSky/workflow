@@ -10,6 +10,7 @@
 
 <div class="example-wrapper">
     <h1>Got a problem? Make a ticket</h1>
+    <h4><a href="{{ path('app_logout') }}">Logout</a></h4>
     <a href="{{ path('customerTickets') }}">View your tickets</a>
     {{ form_start(customerForm) }}
     {{ form_row(customerForm.subject) }}
