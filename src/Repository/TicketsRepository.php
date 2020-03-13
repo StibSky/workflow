@@ -77,6 +77,8 @@ class TicketsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->where('t.assignee IS NULL')
             ->andWhere('t.line = :val')
+            ->andWhere('t.status != 5')
+            ->andWhere('t.status != 4')
             ->setParameter('val', $value)
             ->orderBy('t.priority', 'DESC')
             //->addOrderBy('t.datetime', 'DESC')
@@ -101,6 +103,18 @@ class TicketsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('t')
             ->andWhere('t.status = :val')
             ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findClosedWf()
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.status != 5 && t.status != 4')
+            ->setParameter('val', $value)
+            ->orderBy('t.datetime', 'ASC')
+            ->setMaxResults(100)
             ->getQuery()
             ->getResult()
             ;
