@@ -48,9 +48,13 @@ class CustomerController extends AbstractController
 
         $emCom = $this->getDoctrine()->getRepository(TicketComments::class);
 
+        foreach ($tickets as $ticket) {
+            $comments = $emCom->findAssociatedWithTicket($ticket->getId());
+        }
 
         return $this->render('customer/tickets.html.twig', [
-            'tickets' => $tickets
+            'tickets' => $tickets,
+            'comments' => $comments,
         ]);
     }
 
