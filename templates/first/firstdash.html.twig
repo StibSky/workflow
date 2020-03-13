@@ -10,6 +10,7 @@
 
     <div class="example-wrapper">
         <h1>{{ name }} | Tickets</h1>
+        <h4><a href="{{ path('app_logout') }}">Logout</a></h4>
         <h4><a href="{{ path('first') }}">Ticket pool</a></h4>
         {% for ticket in tickets %}
             <form method="post">

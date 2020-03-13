@@ -15,10 +15,6 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
 
-        if ($this->getUser()) {
-             return $this->redirectToRoute('customer');
-         }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -32,5 +28,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        throw new \Exception('Will be intercepted before getting here');    }
+        throw new \Exception('Will be intercepted before getting here');
+    }
 }
