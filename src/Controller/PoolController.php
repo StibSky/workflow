@@ -84,4 +84,9 @@ class PoolController extends AbstractController
             'name' => $name
         ]);
     }
+
+    public function logout()
+    {
+        throw new \Exception('Will be intercepted before getting here');
+    }
 }

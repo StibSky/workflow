@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tickets;
+use App\Entity\TicketComments;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CustomerFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,9 +46,19 @@ class CustomerController extends AbstractController
         $em = $this->getDoctrine()->getRepository(Tickets::class);
         $tickets = $em->findByCustomerId($this->getUser()->getId());
 
+        $emCom = $this->getDoctrine()->getRepository(TicketComments::class);
+
 
         return $this->render('customer/tickets.html.twig', [
             'tickets' => $tickets
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \Exception('Will be intercepted before getting here');
     }
 }
