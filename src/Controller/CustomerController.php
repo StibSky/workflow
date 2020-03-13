@@ -48,7 +48,7 @@ class CustomerController extends AbstractController
 
         $emCom = $this->getDoctrine()->getRepository(TicketComments::class);
 
-        if (!empty($tickets)) {
+        if (!empty($tickets) && !empty($comments)) {
             foreach ($tickets as $ticket) {
                 $comments = $emCom->findAssociatedWithTicket($ticket->getId());
             }
