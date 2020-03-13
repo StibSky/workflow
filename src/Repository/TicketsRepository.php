@@ -27,6 +27,7 @@ class TicketsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.customer = :val')
+            ->andWhere('t.status != 5')
             ->setParameter('val', $value)
             ->orderBy('t.datetime', 'ASC')
             ->setMaxResults(100)
