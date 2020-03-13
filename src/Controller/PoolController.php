@@ -23,6 +23,8 @@ class PoolController extends AbstractController
             var_dump($tickets);
         }
 
+
+
         $em = $this->getDoctrine()->getManager();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['assign'])) {
