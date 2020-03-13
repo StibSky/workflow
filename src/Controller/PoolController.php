@@ -73,12 +73,14 @@ class PoolController extends AbstractController
         $name = $this->getUser()->getName();
 
         $emCom = $this->getDoctrine()->getRepository(TicketComments::class);
-
-        if (!empty($tickets) && !empty($comments)) {
+        foreach ($tickets as $ticket) {
+            $comments = $emCom->findAssociatedWithTicket($ticket->getId());
+        }
+        /*if (!empty($tickets) && !empty($comments)) {
             foreach ($tickets as $ticket) {
                 $comments = $emCom->findAssociatedWithTicket($ticket->getId());
             }
-        }
+        }*/
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['drop'])) {
