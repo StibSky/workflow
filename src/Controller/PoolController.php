@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\TicketComments;
 use App\Entity\Tickets;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -48,7 +50,7 @@ class PoolController extends AbstractController
     /**
      * @Route("/agentdash", name="agentDash")
      */
-    public function dashboard(UserInterface $user) {
+    public function dashboard(UserInterface $user, Request $request) {
 
         $em = $this->getDoctrine()->getManager()->getRepository(Tickets::class);
         $tickets = $em->findAssignedToMe($this->getUser()->getId());
@@ -78,7 +80,21 @@ class PoolController extends AbstractController
                $em->flush();
                 header("Refresh:0");
             }
+            if (isset($_POST['comment'])) {
+                $comment = new TicketComments();
+                $comment->setUser($this->getUser());
+                $comment->setTicket($repo->findByTicketId($_POST['comment']));
+                $comment->setComment($_POST['commentText']);
+                $comment->setIsPrivate($_POST['private']);
+                $em->persist($comment);
+                $em->flush();
+            }
         }
+
+
+
+
+
         return $this->render('first/firstdash.html.twig', [
             'tickets' => $tickets,
             'name' => $name

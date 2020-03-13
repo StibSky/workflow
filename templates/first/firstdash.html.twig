@@ -22,6 +22,14 @@
                 <button type="submit" value="{{ ticket.id }}" name="escalate">Escalate</button>
                 {% endif %}
                 <button type="submit" name="drop" value="{{ ticket.id }}">I don't want this anymore</button>
+                <br>
+                <input type="text" name="commentText">
+                <label for="private">Visibility?</label>
+                <select id="private" name="private">
+                    <option value="0">Public</option>
+                    <option value="1">Private</option>
+                </select>
+                <button type="submit" name="comment" value="{{ ticket.id }}">Comment</button>
             </form>
         {% endfor %}
     </div>
