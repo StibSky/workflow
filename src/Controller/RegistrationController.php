@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 
 class RegistrationController extends AbstractController
 {
@@ -29,8 +32,12 @@ class RegistrationController extends AbstractController
                 $passwordEncoder->encodePassword(
                     $user,
                     $form->get('plainPassword')->getData()
-                )
-            );
+                ));
+
+            //send mail ((log message))
+            $logger = new Logger('my_logger');
+            $logger->pushHandler(new StreamHandler(__DIR__ . '/logs/log.info', Logger::INFO));
+            $logger->info("new user:". $user->getName() ."<br> email:". $user->getEmail());
 
             // getting roles
             $role = $form->get('Roles');
