@@ -15,13 +15,17 @@ class PoolController extends AbstractController
     public function index(UserInterface $user){
         $repo = $this->getDoctrine()->getRepository(Tickets::class);
         $user = $this->getUser();
+
         if ($user->getRoles() === ['ROLE_FIRST_LINE', 'ROLE_USER']) {
             $tickets = $repo->findByLine(1);
         }
-        else {
+        elseif ($user->getRoles() === ['ROLE_SECOND_LINE', 'ROLE_USER']) {
             $tickets = $repo->findByLine(2);
-            var_dump($tickets);
+        } else {
+            $tickets = $repo->findByLine(3);
         }
+
+
 
         $em = $this->getDoctrine()->getManager();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
