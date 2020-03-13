@@ -95,7 +95,15 @@ class TicketsRepository extends ServiceEntityRepository
        ;
    }
 
-
+    public function findByStatus($value)
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.status = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Tickets
