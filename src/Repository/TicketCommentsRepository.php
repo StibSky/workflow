@@ -19,6 +19,17 @@ class TicketCommentsRepository extends ServiceEntityRepository
         parent::__construct($registry, TicketComments::class);
     }
 
+    public function findAssociatedWithTicket($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.ticket = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.datetime', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return TicketComments[] Returns an array of TicketComments objects
     //  */

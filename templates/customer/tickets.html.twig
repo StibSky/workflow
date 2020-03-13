@@ -17,6 +17,10 @@
             <article>
                 <h4>{% set myVal = myVal + 1 %} {{ myVal }} | {{ ticket.subject }}</h4>
                 <p>{{ ticket.firstMessage }}</p>
+                {% for comment in comments %}
+                    <p>{{ comment.comment }}</p>
+                    <p>{{ comment.user.name }}</p>
+                {% endfor %}
             </article>
         {% endfor %}
     </div>
