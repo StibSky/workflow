@@ -19,6 +19,10 @@
                     <p>{{ ticket.firstMessage }}</p>
                     <p>By {{ ticket.customer.name }} | {{ ticket.customer.email }}</p>
                 </article>
+                {% for comment in comments %}
+                    <p>{{ comment.comment }}</p>
+                    <p>- {{ comment.user.name }}</p>
+                {% endfor %}
                 {% if is_granted('ROLE_FIRST_LINE') %}
                 <button type="submit" value="{{ ticket.id }}" name="escalate">Escalate</button>
                 {% endif %}

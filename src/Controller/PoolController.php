@@ -72,6 +72,12 @@ class PoolController extends AbstractController
         $tickets = $repo->findAssignedToMe($this->getUser()->getId());
         $name = $this->getUser()->getName();
 
+        $emCom = $this->getDoctrine()->getRepository(TicketComments::class);
+
+        foreach ($tickets as $ticket) {
+            $comments = $emCom->findAssociatedWithTicket($ticket->getId());
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['drop'])) {
                $ticket = $repo->findByTicketId($_POST['drop']);
@@ -97,7 +103,8 @@ class PoolController extends AbstractController
 
         return $this->render('first/firstdash.html.twig', [
             'tickets' => $tickets,
-            'name' => $name
+            'name' => $name,
+            'comments' => $comments
         ]);
     }
 
